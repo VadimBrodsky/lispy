@@ -1,6 +1,6 @@
 # Define variables
 CC = cc
-CFLAGS = -std=c99 -Wall
+CFLAGS = -std=c99 -Wall -ledit
 
 # Build rule: takes a .c file as input and produces a corresponding .out file
 build:
