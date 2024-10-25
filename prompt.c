@@ -20,7 +20,7 @@ char *readline(char *prompt) {
   return cpy;
 }
 
-// fakde add_history function
+// fake add_history function
 void add_history(char *unused) {}
 
 // otherwise include the editline headers
