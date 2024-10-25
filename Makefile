@@ -1,6 +1,7 @@
 # Define variables
 CC = cc
-CFLAGS = -std=c99 -Wall -ledit
+CFLAGS = -std=c99 -Wall
+LIBS = -ledit
 
 # Build rule: takes a .c file as input and produces a corresponding .out file
 build:
@@ -8,7 +9,7 @@ build:
 		echo "Usage: make build file=<source_file.c>"; \
 		exit 1; \
 	fi
-	$(CC) $(CFLAGS) $(file) -o $(basename $(file)).out
+	$(CC) $(CFLAGS) $(file) -o $(basename $(file)).out $(LIBS)
 
 # Clean target to remove all .out files
 clean:
