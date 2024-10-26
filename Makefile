@@ -1,7 +1,7 @@
 # Define variables
 CC = cc
 CFLAGS = -std=c99 -Wall
-LIBS = -ledit
+LIBS = -I mpc -ledit -lm
 
 # Build rule: takes a .c file as input and produces a corresponding .out file
 build:
