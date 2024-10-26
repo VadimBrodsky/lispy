@@ -15,6 +15,10 @@ build:
 clean:
 	rm -f *.out
 
+# Build and run the REPL
+run:
+	make build file=REPL.c && ./REPL.out
+
 # Phony targets to avoid conflicts with files named 'build' or 'clean'
-.PHONY: build clean
+.PHONY: build clean run
 
