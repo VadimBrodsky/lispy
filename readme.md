@@ -6,10 +6,22 @@
 cc --version
 ```
 
+## Clone with submodules
+
+```
+git clone --recurse-submodules <repo-url>
+```
+
 ## Compiling
 
 ```shell
-cc -std=c99 -Wall hello_world.c -o hello_wrold
+make build file=REPL.c
+```
+
+## Compile and Run
+
+```
+make run
 ```
 
 ## Debugger
