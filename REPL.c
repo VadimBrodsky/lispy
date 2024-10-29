@@ -43,14 +43,14 @@ int main(int argc, char **argv) {
 
   // define them with the following language
   mpca_lang(MPCA_LANG_DEFAULT, "                          \
-      number   : /-?[0 - 9]+/ ;                           \
+      number   : /-?[0-9]+/ ;                             \
       operator : '+' | '-' | '*' | '/' ;                  \
-      expr     : <number> | '(' < operator> <expr>+ ')' ; \
-      lispy    : /^/ < operator> <expr>+ /$/ ;            \
+      expr     : <number> | '(' <operator>? <expr>+ ')'   \
+      lispy    : /^/ <operator>? <expr>+ /$/ ;            \
     ",
             Number, Operator, Expr, Lispy);
 
-  puts("Lispy Version 0.0.0.0.1");
+  puts("Lispy Version 0.0.0.0.2");
   puts("Press Ctrl+c to Exit\n");
 
   while (1) {
@@ -59,8 +59,17 @@ int main(int argc, char **argv) {
     // Add input to history
     add_history(input);
 
-    // echo back to user
-    printf("No You're a %s\n", input);
+    // attempt to Parse the user input
+    mpc_result_t r;
+    if (mpc_parse("<stdin>", input, Lispy, &r)) {
+      // on success print the AST
+      mpc_ast_print(r.output);
+      mpc_ast_delete(r.output);
+    } else {
+      // otherwise print the error
+      mpc_err_print(r.error);
+      mpc_err_delete(r.error);
+    }
 
     // free retrieved input
     free(input);
